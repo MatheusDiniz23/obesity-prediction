@@ -44,16 +44,17 @@ def get_preprocessor(include_weight=False):
         'MTRANS'
     ]
     
-    # Categóricas Ordinais (Com hierarquia clara)
+    # Categóricas Ordinais (Com hierarquia clara definida por variável)
     ord_features = ['CAEC', 'CALC']
-    ord_categories = ['no', 'Sometimes', 'Frequently', 'Always']
+    caec_categories = ['no', 'Sometimes', 'Frequently', 'Always']
+    calc_categories = ['no', 'Sometimes', 'Frequently', 'Always']
     
     # Numéricas de Escala (Devem ser arredondadas conforme dicionário)
     # FCVC (1-3), NCP (1-4), CH2O (1-3), FAF (0-3), TUE (0-2)
     scale_features = ['FCVC', 'NCP', 'CH2O', 'FAF', 'TUE']
     
     # 2. Funções Customizadas
-    # Arredondamento para tratar ruído do SMOTE em variáveis que deveriam ser discretas
+    # Arredondamento para mitigar ruído sintético ou inconsistências em dados discretos
     rounder = FunctionTransformer(np.round)
     
     # 3. Construção dos Pipelines por tipo de dado
@@ -71,9 +72,10 @@ def get_preprocessor(include_weight=False):
     ])
     
     # Pipeline para Ordinais: Imputação pelo mais frequente + Ordinal Encoding
+    # Categorias definidas explicitamente para cada variável ordinal
     ord_pipeline = Pipeline([
         ('imputer', SimpleImputer(strategy='most_frequent')),
-        ('ordinal', OrdinalEncoder(categories=[ord_categories, ord_categories]))
+        ('ordinal', OrdinalEncoder(categories=[caec_categories, calc_categories]))
     ])
     
     # Pipeline para Escalas: Arredondamento + Padronização
@@ -122,5 +124,5 @@ def preprocess_data(df, include_weight=False, fit=False, preprocessor=None):
 if __name__ == "__main__":
     # Exemplo de uso rápido para validação
     print("Script de pré-processamento carregado.")
-    print("As variáveis ordinais (CAEC, CALC) seguem a ordem: no < Sometimes < Frequently < Always.")
-    print("As variáveis de escala (FCVC, NCP, etc.) são arredondadas para mitigar ruído sintético.")
+    print("As variáveis ordinais (CAEC, CALC) possuem hierarquias definidas explicitamente.")
+    print("As variáveis de escala (FCVC, NCP, etc.) são arredondadas para mitigar ruído em dados discretos.")
