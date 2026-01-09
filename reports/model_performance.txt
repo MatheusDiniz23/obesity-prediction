@@ -1,0 +1,32 @@
+===========================================================
+      RELATÓRIO DE PERFORMANCE - MODELO DIAGNÓSTICO
+===========================================================
+
+MODELO SELECIONADO: Random Forest
+
+-----------------------------------------------------------
+MÉTRICAS DE VALIDAÇÃO (CROSS-VALIDATION):
+-----------------------------------------------------------
+F1-Score (Weighted) Médio: 0.9451
+Acurácia Média:            0.9449
+
+-----------------------------------------------------------
+AVALIAÇÃO FINAL (CONJUNTO DE TESTE):
+-----------------------------------------------------------
+Acurácia Final:            0.9338
+F1-Score (Weighted):       0.9300 (aprox.)
+
+-----------------------------------------------------------
+DETALHAMENTO POR CLASSE (TESTE):
+-----------------------------------------------------------
+Insufficient_Weight:       F1=0.96
+Normal_Weight:             F1=0.84
+Obesity_Type_I:            F1=0.95
+Obesity_Type_II:           F1=0.98
+Obesity_Type_III:          F1=0.99
+Overweight_Level_I:        F1=0.87
+Overweight_Level_II:       F1=0.94
+
+===========================================================
+STATUS: Modelo pronto para apoio à decisão clínica.
+===========================================================
