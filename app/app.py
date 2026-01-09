@@ -81,7 +81,7 @@ def main():
         'Age': age,
         'Height': height,
         'Weight': weight,
-        'family_history_with_overweight': family_history,
+        'family_history': family_history,
         'FAVC': favc,
         'FCVC': fcvc,
         'NCP': ncp,
