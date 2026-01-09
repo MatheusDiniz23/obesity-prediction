@@ -97,10 +97,8 @@ def main():
     
     df_input = pd.DataFrame([input_data])
     
-    # AJUSTE DE COMPATIBILIDADE: Garante que o DataFrame tenha as colunas exatas e na ordem 
-    # esperada pelo modelo (feature_names_in_), evitando erros no Streamlit Cloud.
-    if hasattr(model, 'feature_names_in_'):
-        df_input = df_input[model.feature_names_in_]
+    # O DataFrame bruto é passado diretamente para a pipeline.
+    # A seleção e ordem das colunas são gerenciadas internamente pelo ColumnTransformer.
     
     # --- Exibição e Predição ---
     col1, col2 = st.columns([1, 1])
